@@ -1,0 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto17
+    commands:
+      - apt-get update
+      - apt-get install -y maven
+      - mvn -v
+
+  build:
+    commands:
+      - mvn clean package -DskipTests
+      - echo Renaming output JAR to spring.jar...
+      - cp target/*.jar spring.jar
+
+artifacts:
+  files:
+    - spring.jar
