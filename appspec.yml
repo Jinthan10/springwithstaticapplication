@@ -1,12 +1,14 @@
 version: 0.0
 os: linux
-
 files:
-  - source: /target/my-java-app.jar
-    destination: /home/ubuntu/my-java-app/
-
+  - source: spring.jar
+    destination: /home/ec2-user/app
 hooks:
-  AfterInstall:
-    - location: scripts/start_app.sh
-      timeout: 180
-      runas: ubuntu
+  ApplicationStop:
+    - location: scripts/stop_server.sh
+      timeout: 60
+      runas: ec2-user
+  ApplicationStart:
+    - location: scripts/start_server.sh
+      timeout: 60
+      runas: ec2-user
