@@ -1,10 +1,11 @@
 version: 0.0
 os: linux
 files:
-  - source: spring.jar
+  - source: /
     destination: /home/ec2-user/app
+ 
 hooks:
-  ApplicationStop:
+  BeforeInstall:
     - location: scripts/stop_server.sh
       timeout: 60
       runas: ec2-user
