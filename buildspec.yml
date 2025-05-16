@@ -25,10 +25,12 @@ phases:
       - mkdir -p build-output
       - cp target/*.jar build-output/spring.jar
       - cp appspec.yml build-output/
-      - cp -r scripts build-output/
+      - mkdir -p build-output/scripts            
+      - cp scripts/start_server.sh build-output/scripts/
+      - cp scripts/stop_server.sh build-output/scripts/
 
 artifacts:
   files:
     - '**/*'
   base-directory: build-output
-  discard-paths: yes
+  discard-paths: no
