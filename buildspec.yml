@@ -29,6 +29,6 @@ phases:
 
 artifacts:
   files:
-    - build-output/**/*
+    - '**/*'
   base-directory: build-output
   discard-paths: yes
