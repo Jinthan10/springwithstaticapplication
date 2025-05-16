@@ -1,16 +1,15 @@
 version: 0.0
 os: linux
 files:
-  - source: /spring.jar
-    destination: /home/ec2-user/app/spring.jar
-  - source: /appspec.yml
-    destination: /home/ec2-user/app/appspec.yml
+  - source: spring.jar
+    destination: /home/ec2-user/app/
 
 hooks:
   ApplicationStop:
     - location: scripts/stop_server.sh
       timeout: 180
       runas: ec2-user
+
   ApplicationStart:
     - location: scripts/start_server.sh
       timeout: 180
