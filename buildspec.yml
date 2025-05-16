@@ -9,17 +9,17 @@ phases:
       - apt-get install -y maven
       - mvn -v
 
-   pre_build:
+  pre_build:
     commands:
       - echo Cleaning project...
       - mvn clean
- 
+
   build:
     commands:
       - echo Renaming output JAR to spring.jar...
       - echo Building the JAR...
       - mvn package -DskipTests
- 
+
   post_build:
     commands:
       - echo Build completed.
@@ -27,7 +27,7 @@ phases:
       - cp target/*.jar spring.jar build-output/
       - cp appspec.yml build-output/
       - cp -r scripts build-output/
- 
+
 artifacts:
   files:
     - build-output/**/*
