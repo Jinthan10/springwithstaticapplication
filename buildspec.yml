@@ -9,12 +9,26 @@ phases:
       - apt-get install -y maven
       - mvn -v
 
+   pre_build:
+    commands:
+      - echo Cleaning project...
+      - mvn clean
+ 
   build:
     commands:
-      - mvn clean package -DskipTests
       - echo Renaming output JAR to spring.jar...
-      - cp target/*.jar spring.jar
-
+      - echo Building the JAR...
+      - mvn package -DskipTests
+ 
+  post_build:
+    commands:
+      - echo Build completed.
+      - mkdir -p build-output
+      - cp target/*.jar spring.jar build-output/
+      - cp appspec.yml build-output/
+      - cp -r scripts build-output/
+ 
 artifacts:
   files:
-    - spring.jar
+    - build-output/**/*
+  discard-paths: yes
