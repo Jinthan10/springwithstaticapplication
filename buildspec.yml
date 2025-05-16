@@ -16,19 +16,19 @@ phases:
 
   build:
     commands:
-      - echo Renaming output JAR to spring.jar...
       - echo Building the JAR...
       - mvn package -DskipTests
 
   post_build:
     commands:
-      - echo Build completed.
+      - echo Build completed. Preparing artifact...
       - mkdir -p build-output
-      - cp target/*.jar spring.jar build-output/
+      - cp target/*.jar build-output/spring.jar
       - cp appspec.yml build-output/
       - cp -r scripts build-output/
 
 artifacts:
   files:
     - build-output/**/*
+  base-directory: build-output
   discard-paths: yes
